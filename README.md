@@ -4,7 +4,7 @@ Tray provides a GUI system tray for your application, dynamically generated and 
 
 ## Screenshot
 
-
+[!Tray](https://raw.githubusercontent.com/ipv6rslimited/tray/main/screenshot.png)
 
 ## Features
 
