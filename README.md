@@ -4,7 +4,33 @@ Tray provides a GUI system tray for your application, dynamically generated and 
 
 ## Screenshot
 
-[!Tray](https://raw.githubusercontent.com/ipv6rslimited/tray/main/screenshot.png)
+![Tray](https://raw.githubusercontent.com/ipv6rslimited/tray/main/screenshot.png)
+
+This was generated from:
+
+```
+{
+  "icon": "path/to/tray/icon.png",
+  "title": "My Tray App",
+  "items": [
+    {
+      "title": "Open Editor",
+      "exec": "gedit",
+      "icon": "DocumentIcon"
+    },
+    {
+      "title": "Utilities",
+      "items": [
+        {
+          "title": "Calculator",
+          "exec": "gnome-calculator",
+          "icon": "ContentAddIcon"
+        }
+      ]
+    }
+  ]
+}
+```
 
 ## Features
 
