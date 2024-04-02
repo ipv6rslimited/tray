@@ -1,0 +1,21 @@
+{
+  "icon": "path/to/tray/icon.png",
+  "title": "My Tray App",
+  "items": [
+    {
+      "title": "Open Editor",
+      "exec": "gedit",
+      "icon": "DocumentIcon"
+    },
+    {
+      "title": "Utilities",
+      "items": [
+        {
+          "title": "Calculator",
+          "exec": "gnome-calculator",
+          "icon": "ContentAddIcon"
+        }
+      ]
+    }
+  ]
+}
