@@ -13,6 +13,8 @@
 package tray
 
 import (
+  "runtime"
+  "strings"
   "encoding/json"
   "io/ioutil"
   "path/filepath"
@@ -63,9 +65,21 @@ func executeCommand(command string) {
   if command == "" {
     return
   }
-  cmd := exec.Command("bash", "-c", command)
+
+  var cmd *exec.Cmd
+
+  if runtime.GOOS == "windows" {
+    command = strings.Replace(command, ".sh", ".ps1", -1)
+    cmd = exec.Command("powershell", "-ExecutionPolicy", "Bypass", "-File", command)
+  } else {
+    cmd = exec.Command("bash", "-c", command)
+  }
   if err := cmd.Start(); err != nil {
     log.Printf("Failed to execute command: %s\n", err)
+  } else {
+    if err := cmd.Wait(); err != nil {
+      log.Printf("Command finished with error: %v", err)
+    }
   }
 }
 

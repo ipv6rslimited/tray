@@ -2,7 +2,7 @@ module tray-test
 
 require (
 	fyne.io/fyne/v2 v2.4.4
-	github.com/ipv6rslimited/tray v0.2.0
+	github.com/ipv6rslimited/tray v0.3.0
 )
 
 require (
