@@ -2,6 +2,10 @@
 
 Tray provides a GUI system tray for your application, dynamically generated and updated from a JSON file.
 
+## Screenshot
+
+
+
 ## Features
 
 - Custom System Tray icon in Mac, windows and Linux generated from a JSON
