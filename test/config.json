@@ -16,6 +16,11 @@
           "icon": "ContentAddIcon"
         }
       ]
+    },
+    {
+      "title": "Quit",
+      "exec": "EXIT",
+      "icon": "ExitIcon"
     }
   ]
 }

@@ -21,6 +21,7 @@ import (
   "log"
   "fmt"
   "github.com/fsnotify/fsnotify"
+  "os"
   "os/exec"
   "fyne.io/fyne/v2"
   "fyne.io/fyne/v2/driver/desktop"
@@ -64,6 +65,8 @@ func loadConfig(filename string) (*TrayConfig, error) {
 func executeCommand(command string) {
   if command == "" {
     return
+  } else if command == "EXIT" {
+    os.Exit(0)
   }
 
   var cmd *exec.Cmd
