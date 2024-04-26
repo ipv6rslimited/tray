@@ -80,12 +80,12 @@ func executeCommand(command string) {
       cmd = exec.Command("powershell", "-ExecutionPolicy", "Bypass", "-File", command)
     } else {
       cmd = exec.Command("powershell", "-ExecutionPolicy", "Bypass", "-Command", "Start-Process", "-FilePath", command)
+      SetCommandNoWindow(cmd)
     }
   } else {
     cmd = exec.Command("bash", "-c", command)
   }
 
-  SetCommandNoWindow(cmd)
 
   if err := cmd.Start(); err != nil {
     log.Printf("Failed to execute command: %s\n", err)
