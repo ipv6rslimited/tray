@@ -34,6 +34,7 @@ type MenuItem struct {
   Exec  string      `json:"exec"`
   Icon  string      `json:"icon"`
   Items []MenuItem  `json:"items"`
+  Hide  bool        `json:"hide"`
 }
 
 type TrayConfig struct {
@@ -63,7 +64,7 @@ func loadConfig(filename string) (*TrayConfig, error) {
   return &config, nil
 }
 
-func executeCommand(command string) {
+func executeCommand(command string, hideWindow bool) {
   if command == "" {
     return
   } else if command == "EXIT" {
@@ -80,7 +81,9 @@ func executeCommand(command string) {
       cmd = exec.Command("powershell", "-ExecutionPolicy", "Bypass", "-File", command)
     } else {
       cmd = exec.Command("powershell", "-ExecutionPolicy", "Bypass", "-Command", command)
-      SetCommandNoWindow(cmd)
+      if hideWindow {
+        SetCommandNoWindow(cmd)
+      }
     }
   } else {
     cmd = exec.Command("bash", "-c", command)
@@ -100,7 +103,7 @@ func createMenuItems(items []MenuItem) []*fyne.MenuItem {
   var menuItems []*fyne.MenuItem
   for _, item := range items {
     menuItem := fyne.NewMenuItem(item.Title, func() {
-      executeCommand(item.Exec)
+      executeCommand(item.Exec, item.Hide)
     })
 
     if item.Icon != "" {
