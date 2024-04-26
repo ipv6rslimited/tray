@@ -101,7 +101,6 @@ func executeCommand(command string) {
 
   var cmd *exec.Cmd
 
-  SetCommandNoWindow(cmd)
 
   if runtime.GOOS == "windows" {
     if strings.HasSuffix(command, ".sh") {
@@ -115,6 +114,9 @@ func executeCommand(command string) {
   } else {
     cmd = exec.Command("bash", "-c", command)
   }
+
+  SetCommandNoWindow(cmd)
+
   if err := cmd.Start(); err != nil {
     log.Printf("Failed to execute command: %s\n", err)
   } else {
