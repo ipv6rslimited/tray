@@ -79,7 +79,7 @@ func executeCommand(command string) {
     if strings.HasSuffix(command, ".ps1") {
       cmd = exec.Command("powershell", "-ExecutionPolicy", "Bypass", "-File", command)
     } else {
-      cmd = exec.Command("powershell", "-ExecutionPolicy", "Bypass", "-Command", command)
+      cmd = exec.Command("powershell", "-ExecutionPolicy", "Bypass", "-Command", "Start-Process", "-FilePath", command)
     }
   } else {
     cmd = exec.Command("bash", "-c", command)
