@@ -9,7 +9,7 @@
     },
     {
       "title": "Hello World",
-      "exec": "cat 'Hello World' > _CURRENTPATH/hello",
+      "exec": "echo 'Hello World' > _CURRENTPATH/hello",
       "icon": "DocumentIcon"
     },
     {

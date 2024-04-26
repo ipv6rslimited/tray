@@ -98,6 +98,8 @@ func executeCommand(command string) {
   command = strings.Replace(command, "_HOMEPATH", homeDir, -1)
   command = strings.Replace(command, "_LOCALDATA", appPath, -1)
 
+  command = "\""+command+"\""
+
   var cmd *exec.Cmd
 
   if runtime.GOOS == "windows" {
