@@ -93,12 +93,10 @@ func executeCommand(command string) {
     appPath = homeDir
   }
 
-  command = strings.Replace(command, "_CURRENTPATH", execDir, -1)
-  command = strings.Replace(command, "_PARENTPATH", parentDir, -1)
-  command = strings.Replace(command, "_HOMEPATH", homeDir, -1)
-  command = strings.Replace(command, "_LOCALDATA", appPath, -1)
-
-  command = "\""+command+"\""
+  command = strings.Replace(command, "_CURRENTPATH", "\"" + execDir + "\"", -1)
+  command = strings.Replace(command, "_PARENTPATH", "\"" + parentDir + "\"", -1)
+  command = strings.Replace(command, "_HOMEPATH", "\"" + homeDir + "\"", -1)
+  command = strings.Replace(command, "_LOCALDATA", "\"" + appPath + "\"", -1)
 
   var cmd *exec.Cmd
 
