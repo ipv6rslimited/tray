@@ -101,8 +101,14 @@ func executeCommand(command string) {
   var cmd *exec.Cmd
 
   if runtime.GOOS == "windows" {
-    command = strings.Replace(command, ".sh", ".ps1", -1)
-    cmd = exec.Command("powershell", "-ExecutionPolicy", "Bypass", "-File", command)
+    if strings.HasSuffix(command, ".sh") {
+      command = strings.Replace(command, ".sh", ".ps1", -1)
+    }
+    if strings.HasSuffix(command, ".ps1") {
+      cmd = exec.Command("powershell", "-ExecutionPolicy", "Bypass", "-File", command)
+    } else {
+      cmd = exec.Command("powershell", "-ExecutionPolicy", "Bypass", "-Command", command)
+    }
   } else {
     cmd = exec.Command("bash", "-c", command)
   }
