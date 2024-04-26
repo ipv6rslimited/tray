@@ -69,6 +69,35 @@ func executeCommand(command string) {
     os.Exit(0)
   }
 
+  execDir, err := os.Executable()
+  if err != nil {
+    log.Printf("Failed to get executable path: %v", err)
+  }
+  execDir = filepath.Dir(execDir)
+
+  parentDir := filepath.Dir(execDir)
+
+  homeDir, err := os.UserHomeDir()
+  if err != nil {
+    fmt.Println("Failed to get home directory:", err)
+    os.Exit(1)
+  }
+  var appPath string
+  if runtime.GOOS == "windows" {
+    appData := os.Getenv("LOCALAPPDATA")
+    if appData == "" {
+      appData = filepath.Join(homeDir, "AppData", "Local")
+    }
+    appPath = appData
+  } else {
+    appPath = homeDir
+  }
+
+  command = strings.Replace(command, "_CURRENTPATH", execDir, -1)
+  command = strings.Replace(command, "_PARENTPATH", parentDir, -1)
+  command = strings.Replace(command, "_HOMEPATH", homeDir, -1)
+  command = strings.Replace(command, "_LOCALDATA", appPath, -1)
+
   var cmd *exec.Cmd
 
   if runtime.GOOS == "windows" {
