@@ -47,6 +47,7 @@ func Tray(app fyne.App, configPath string) {
   if err := loadAndSetupTray(app, configPath); err != nil {
     log.Fatalf("Failed to set up tray: %v", err)
   }
+  initMacSpecific(app)
   watchConfigFile(app, configPath)
 }
 
@@ -99,6 +100,8 @@ func executeCommand(command string) {
   command = strings.Replace(command, "_LOCALDATA", "\"" + appPath + "\"", -1)
 
   var cmd *exec.Cmd
+
+  setCommandNoWindow(cmd)
 
   if runtime.GOOS == "windows" {
     if strings.HasSuffix(command, ".sh") {
