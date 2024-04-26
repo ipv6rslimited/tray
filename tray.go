@@ -79,7 +79,7 @@ func executeCommand(command string) {
     if strings.HasSuffix(command, ".ps1") {
       cmd = exec.Command("powershell", "-ExecutionPolicy", "Bypass", "-File", command)
     } else {
-      cmd = exec.Command("powershell", "-ExecutionPolicy", "Bypass", "-Command", "Start-Process", "-FilePath", command)
+      cmd = exec.Command("powershell", "-ExecutionPolicy", "Bypass", "-Command", command)
       SetCommandNoWindow(cmd)
     }
   } else {
